@@ -12,31 +12,28 @@
 """
 n = int(input())
 
-lst = [ [0]*9 for i in range(n) ]
-
+tree = [ [0]*9 for i in range(n) ]
 
 for i in range(n):
     a = list(map(int, input().split()))
     if a[1] != -1:
-        lst[a[0]][a[1]] = 1
+        tree[a[0]][a[1]] = 1
     if a[2] != -1:
-        lst[a[0]][a[2]] = 1
+        tree[a[0]][a[2]] = 1
 
 def dfs(x, l):
     l.append(x)
     r=0
     for i in range(n):
-        if lst[x][i]==1:
+        if tree[x][i]==1:
             r+=1
             dfs(i, l.copy())
     if r==0:
         ans.append(l)
 
 for i in range(n):
-    
-    
     ans = []
-    dfs(i,[])
+    dfs(i, [])
     
     print(ans)
 
