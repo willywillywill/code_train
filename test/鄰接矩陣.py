@@ -22,19 +22,21 @@ for i in range(n):
     if a[2] != -1:
         lst[a[0]][a[2]] = 1
 
+def dfs(x, l):
+    l.append(x)
+    r=0
+    for i in range(n):
+        if lst[x][i]==1:
+            r+=1
+            dfs(i, l.copy())
+    if r==0:
+        ans.append(l)
+
 for i in range(n):
     
-    def dfs(x, l=[]):
-        l.append(x)
-        r=0
-        for i in range(len(lst[x])):
-            if lst[x][i]==1:
-                r+=1
-                dfs(i, l.copy())
-        if r==0:
-            ans.append(l)
+    
     ans = []
-    dfs(i)
+    dfs(i,[])
     
     print(ans)
 
