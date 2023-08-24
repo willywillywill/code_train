@@ -10,19 +10,9 @@
 7 -1 -1
 8 -1 -1
 """
-import pprint
 n = int(input())
 
 lst = [ [0]*9 for i in range(n) ]
-
-def dfs(x,n=0):
-    r = 0
-    for i in range(len(lst[x])):
-        if lst[x][i] == 1:
-            dfs(x,n+1)
-            #dfs(i, n.copy())
-    if r==0:
-        return n
 
 
 for i in range(n):
@@ -31,16 +21,21 @@ for i in range(n):
         lst[a[0]][a[1]] = 1
     if a[2] != -1:
         lst[a[0]][a[2]] = 1
-import pprint
 
 for i in range(n):
-    num=0
-    ans=[]
-    for k in lst[i]:
-        if k==1:
-            num+=1
-
-    print(i)
+    
+    def dfs(x, l=[]):
+        l.append(x)
+        r=0
+        for i in range(len(lst[x])):
+            if lst[x][i]==1:
+                r+=1
+                dfs(i, l.copy())
+        if r==0:
+            ans.append(l)
+    ans = []
     dfs(i)
+    
+    print(ans)
 
 
