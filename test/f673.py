@@ -10,11 +10,7 @@
 5 -1 -1
 6 -1 -1
 7 -1 -1
-"""
 
-
-
-"""
 def f(x,n=[0]):
     if x[0][0] != -1:
         x[0].pop(0)
@@ -37,7 +33,7 @@ for i in range(n):
     a = list(map(int, input().split()))
     l.append([a[1],a[2]])
 ans = []
-def f(x, n = []):
+def f(x, n = []): #dfs
     if x>0:
         n.append(x)
     r = 0
