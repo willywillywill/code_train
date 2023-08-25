@@ -1,3 +1,5 @@
+# I do not know
+
 k = 1
 while 1:
     try:
@@ -17,12 +19,3 @@ while 1:
         k+=1
     except:
         break
-
-
-
-
-
-
-    
-    
-    
