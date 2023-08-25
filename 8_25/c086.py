@@ -1,21 +1,23 @@
 # I do not know
-
-k = 1
+g = 1
 while 1:
-    try:
+    try:       
         str1 = list(map(int,input().split()))
         n = str1.pop(0)  #多少人參加樂透
         x = str1.pop(0)  #多少人可以休假
 
-        n = [ i+1 for i in range(n) ]
+        n = list((range(1, n+1)))
 
-        while len(n)>x:
+        while len(n) > x:
             val = str1.pop(0)
-            n = [ n[i-1] for i in range(len(n)+1) if i%val!=0 and i!=0 ]
-            print(n)
-
-        print("Selection #%d"%(k))
+            k = n[val-1::val]
+            del n[val-1::val]  
+            
+        if len(n) != x:
+            n.append(k[::-1])
+            n.sort()
+        print("Selection #%d"%(g))
+        g+=1
         print(*n)
-        k+=1
     except:
         break
