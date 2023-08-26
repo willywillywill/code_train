@@ -8,16 +8,17 @@ while 1:
 
         n = list((range(1, n+1)))  #建立一個從 1~n+1 的矩陣用來記錄參加樂透的人
 
-        while len(n) > x:      #刪到參加人數 < 休假人數
+        while len(n) > x and len(str1) > 0:      #刪到參加人數 < 休假人數
             val = str1.pop(0)  #要被刪除的 index
             k = n[val-1::val]  #紀錄被刪除的數
-            del n[val-1::val]  #刪除數
-            
-        if len(n) != x:        #如果多刪除
-            n.append(k[::-1])  #從紀錄中提取被刪除的數
-            n.sort()
+
+            for i in k:
+                n.remove(i)
+                if len(n) == x:
+                    break
         print("Selection #%d"%(g))
         g+=1
         print(*n)
+        print()
     except:
         break
