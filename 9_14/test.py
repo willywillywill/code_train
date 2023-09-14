@@ -1,13 +1,21 @@
-def f(n):
-    if n%2==1:
-        ans1.append(n)
-    else:
-        ans2.append(n)
-    if n>0:
-        f(n-1)
+lst = [
+    [0,1,1,0,0,0],
+    [0,0,1,0,0,0],
+    [0,0,1,1,0,0],
+    [0,0,0,0,0,0],
+    [0,0,0,0,0,1],
+    [0,0,0,0,0,0],
+]
+val = [ 0 for i in range(6) ]
 
-ans1 = []
-ans2 = []
-f(10)
-print(ans1)
-print(ans2)
+def dfs(i):
+    if val[i]:
+        return
+    val[i] = 1 
+
+    for j in range(6):
+        if lst[i][j]:
+            dfs(j)                                                             
+
+for i in range(6):
+    dfs(i)
