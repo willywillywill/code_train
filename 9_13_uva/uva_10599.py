@@ -18,27 +18,14 @@ for i in range(x):       # 計算球數
             dp[i][j] = max(dp[i-1][j], dp[i][j-1])+1
         else:
             dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+
+"""
 for i in range(x):
     for j in range(y):
-        if 1 in m[i][j+1:]:
-            dp[i][j+1] = dp[i][j]+1
-        if 1 in [ m[ii][j] for ii in range(i+1,x) ]:
-            dp[i+1][j] = dp[i][j]+1
-"""
-
-def f(i,j):
-    if m[i][j]:
-        print([i,j])
-    if 1 in m[i][j+1:]:
-        f(i,j+1)
-    if 1 in [ m[ii][j] for ii in range(i+1,x) ]:
-        f(i+1,j)
-
-    
-
-l = f(0,0)
-
+        if 1 in m[i][j+1:] and 1 in [ m[ii][j] for ii in range(i+1,x) ]:
+            dp[i][j] = max(dp[i-1][j], dp[i][j-1])+1
 pprint.pprint(dp)
+
 
 
 # A2 ??
