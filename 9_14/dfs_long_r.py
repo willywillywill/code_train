@@ -29,7 +29,7 @@ def dfs_1(x,px):
 
 def dfs_2(x,px):
     for i in range(len(lst)):
-        if (x==2**i or ==2**x+1) and px != i: # 單向
+        if (x==2**i or y==2**x+1) and px != i: # 單向
             val_2[i] = val_2[x]+1
             dfs_2(i,x)
 
