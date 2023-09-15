@@ -1,4 +1,5 @@
 # ??? TLE
+
 """
 t = 1
 while 1:
@@ -27,24 +28,27 @@ while 1:
     print("CASE#%d:"%(t),dp[-1][-1],2**n)
     t += 1
 """
+
 x,y = list(map(int, input().split()))
 
-m = [ [ 0 for j in range(max(x,y)) ] for i in range(max(x,y)) ]
-dp = [ [ 0 for j in range(y) ] for i in range(x) ]
-val = [ 0 for i in range(x) ]
+m = [ [ 0 for j in range(y) ] for i in range(x) ]
+dp = [ [0 for j in range(2)] for i in range(y) ]
 while 1:
     s1, s2 = list(map(int, input().split()))
     if s1==s2==0:
         break
     m[s1-1][s2-1] = 1
+n = 0
 
-def dfs_1(x,px):
-    for i in range(len(m)):
-        if m[x][i] and px != i: # 單向
-            val[i] = val[x]+1
-            dfs_1(i,x)
-dfs_1(0,0)
-print(val)
+for i in range(x):       # 計算球數
+    for j in range(1,y):
+        if m[i][j]:
+            dp[j] += dp[j-1]+1
+        else:
+            dp[j] += dp[j-1]
+    print(dp)
+print(dp)        
+
 
 """
 6 7
