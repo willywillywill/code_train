@@ -20,7 +20,7 @@ for _ in range(n):
     tree[n1][n3] = 1 if n3 != -1 else 0
 
 dfs_D(0,0)
-info = {"ID":0,"F":0,"K":0,"D":0,"H":0}
+info     = { "ID":0,"F":0,"K":0,"D":0,"H":0 }
 info_set = [ info.copy() for i in range(n) ]
 for i in range(n):
     info_set[i]["ID"] = i
@@ -34,9 +34,14 @@ for i in range(n):
     info_set[i]["D"] = d[i]
     info_set[i]["H"] = dfs_H(i,i)
 
-for i in range(n):  
     print("node %d: parent = %d, degree = %d, depth = %d, height = %d,"
-          %(info_set[i]["ID"],info_set[i]["F"],info_set[i]["K"],info_set[i]["D"],info_set[i]["H"]))
+          %(
+            info_set[i]["ID"],
+            info_set[i]["F"],
+            info_set[i]["K"],
+            info_set[i]["D"],
+            info_set[i]["H"]
+            ))
 
 
 
