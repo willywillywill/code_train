@@ -1,32 +1,45 @@
 
-def bfs(n=0):
-    
-    l = 2*n
-    r = 2*n+1
-    print(tree[l])
-    print(tree[r])
-    bfs(l)
-    bfs(r)
+def dfs_D(x,px):
+    for i in range(n):
+        if tree[x][i] and i != px:
+            d[i] = d[x]+1
+            dfs_D(i,x)
+def dfs_H(x,px):
+    h = 0
+    for i in range(n):
+        if tree[x][i] and i!=px:
+            h = max(h, dfs_H(i,x)+1)
+    return h
 
-
-
-
-tree = []
-for _ in range(int(input())):
+n = int(input())
+d = [ 0 for i in range(n) ]
+tree = [[ 0 for i in range(n) ] for j in range(n)]
+for _ in range(n):
     n1,n2,n3 = list(map(int,input().split()))
-    tree.append(n2)
-    tree.append(n3)
-print(tree)
+    tree[n1][n2] = 1 if n2 != -1 else 0
+    tree[n1][n3] = 1 if n3 != -1 else 0
 
-"""
-for i in range(len(tree)):
-    if tree[i] == [-1,-1]:
-        c = 0
-    elif tree[i][0] == -1 or tree[i][1] == -1:
-        c = 1
+dfs_D(0,0)
+info = {"ID":0,"F":0,"K":0,"D":0,"H":0}
+info_set = [ info.copy() for i in range(n) ]
+for i in range(n):
+    info_set[i]["ID"] = i
+    for ii in range(n):
+        if tree[ii][i] == 1:
+            info_set[i]["F"] = ii
+            break
     else:
-        c = 2
-"""  
+        info_set[i]["F"] = -1
+    info_set[i]["K"] = len([ ii for ii in range(n) if tree[i][ii]==1 ])
+    info_set[i]["D"] = d[i]
+    info_set[i]["H"] = dfs_H(i,i)
+
+for i in range(n):  
+    print("node %d: parent = %d, degree = %d, depth = %d, height = %d,"
+          %(info_set[i]["ID"],info_set[i]["F"],info_set[i]["K"],info_set[i]["D"],info_set[i]["H"]))
+
+
+
 """
 9
 0 1 4
@@ -38,4 +51,12 @@ for i in range(len(tree)):
 6 -1 -1
 7 -1 -1
 8 -1 -1
+
+6
+0 3 -1
+1 -1 5
+2 -1 -1
+3 4 -1
+4 2 1
+5 -1 -1
 """
