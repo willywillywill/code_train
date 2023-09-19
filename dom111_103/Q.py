@@ -1,14 +1,14 @@
 
-def dfs_D(x,px):
+def dfs_D(x):
     for i in range(n):
-        if tree[x][i] and i != px:
+        if tree[x][i]:
             d[i] = d[x]+1
-            dfs_D(i,x)
-def dfs_H(x,px):
+            dfs_D(i)
+def dfs_H(x):
     h = 0
     for i in range(n):
-        if tree[x][i] and i!=px:
-            h = max(h, dfs_H(i,x)+1)
+        if tree[x][i]:
+            h = max(h, dfs_H(i)+1)
     return h
 
 n = int(input())
@@ -16,14 +16,17 @@ d = [ 0 for i in range(n) ]
 tree = [[ 0 for i in range(n) ] for j in range(n)]
 for _ in range(n):
     n1,n2,n3 = list(map(int,input().split()))
-    tree[n1][n2] = 1 if n2 != -1 else 0
-    tree[n1][n3] = 1 if n3 != -1 else 0
+    if n2 != -1:
+        tree[n1][n2] = 1
+    if n3 != -1:
+        tree[n1][n3] = 1
 
-dfs_D(0,0)
+dfs_D(0)
 info     = { "ID":0,"F":0,"K":0,"D":0,"H":0 }
 info_set = [ info.copy() for i in range(n) ]
 for i in range(n):
     info_set[i]["ID"] = i
+
     for ii in range(n):
         if tree[ii][i] == 1:
             info_set[i]["F"] = ii
@@ -32,7 +35,7 @@ for i in range(n):
         info_set[i]["F"] = -1
     info_set[i]["K"] = len([ ii for ii in range(n) if tree[i][ii]==1 ])
     info_set[i]["D"] = d[i]
-    info_set[i]["H"] = dfs_H(i,i)
+    info_set[i]["H"] = dfs_H(i)
 
     print("node %d: parent = %d, degree = %d, depth = %d, height = %d,"
           %(
