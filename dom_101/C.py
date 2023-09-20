@@ -1,4 +1,3 @@
-
 def dfs(x):
     for i in range(n):
         if lst[i][x]:
