@@ -1,8 +1,6 @@
 
-
 edge_number = int(input())
-val = [0]* edge_number
-val[0] = 1
+nodes_clr = [0]*edge_number
 dit = {}
 for i in range(int(input())):
     a,b = list(map(int,input().split()))
@@ -14,15 +12,16 @@ for i in range(int(input())):
         dit[b].append(a)
     else:
         dit[b] = [a]
+for i in dit:
+    k = [ nodes_clr[ii] for ii in dit[i] ]
+    if sorted(k)[-1] == sorted(k)[0]:
+        nodes_clr[i]=1
+    else:
+        nodes_clr[i]=max(k)+1
 
-def f(px,x):
-    for i in dit[x]:
-        if i != px and val[i]==0:
-            val[i] = val[x]+1
-            f(x,i)
 
-f(0,0)
-print(val)
+print(nodes_clr)
+
 
 """
 5
