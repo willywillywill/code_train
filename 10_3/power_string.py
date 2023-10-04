@@ -17,8 +17,7 @@ for i in range(L):
     hash_table[i] = ((hash_table[i-1] if i else 0)*p+idx[s[i]])%mod
 print(hash_table)
 
-for i in x:
-    for j in range(1, int(L/i)):
+
         
 
 

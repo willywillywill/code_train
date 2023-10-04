@@ -1,29 +1,48 @@
+# !!!  https://www.techiedelight.com/zh-tw/greedy-coloring-graph/
 
-edge_number = int(input())
-nodes_clr = [0]*edge_number
-dit = {}
-for i in range(int(input())):
-    a,b = list(map(int,input().split()))
-    if a in dit:
-        dit[a].append(b)
+class Graph:
+    def __init__(self, edges, n):
+        self.adjList = [ [] for _ in range(n) ]
+        
+        for (src, dest) in edges:
+            self.adjList[src].append(dest)
+            self.adjList[dest].append(src)
+
+def colorGraph(graph, n):
+    result = {}
+    for u in range(n):
+        assigned = set([ result.get(i) for i in graph.adjList[u] if i in result ])
+        color = 1
+        for c in assigned:
+            if color != c:
+                break
+            color = color+1
+        result[u] = color
+    return result
+
+for _ in range(int(input())):
+    node_number = int(input())
+    edge_number = int(input())
+    edges = []
+    for i in range(edge_number):
+        edges.append(tuple(map(int,input().split())))
+
+    graph = Graph(edges, node_number)
+    result = colorGraph(graph, node_number)
+    color_number = len(set(result.values()))
+    if color_number >2:
+        print("F")
     else:
-        dit[a] = [b]
-    if b in dit:
-        dit[b].append(a)
-    else:
-        dit[b] = [a]
-for i in dit:
-    k = [ nodes_clr[ii] for ii in dit[i] ]
-    if sorted(k)[-1] == sorted(k)[0]:
-        nodes_clr[i]=1
-    else:
-        nodes_clr[i]=max(k)+1
-
-
-print(nodes_clr)
-
+        print("T")
 
 """
+2
+4
+4
+0 1
+1 2
+2 3
+3 0
 5
 10
 0 1
@@ -36,11 +55,4 @@ print(nodes_clr)
 2 3
 2 4
 3 4
-
-4
-4
-0 1
-1 2
-2 3
-3 0
 """
