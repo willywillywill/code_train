@@ -17,23 +17,28 @@ def colorGraph(graph, n):
             if color != c:
                 break
             color = color+1
+        print(color)
         result[u] = color
+        print(result)
     return result
 
-for _ in range(int(input())):
-    node_number = int(input())
-    edge_number = int(input())
-    edges = []
-    for i in range(edge_number):
-        edges.append(tuple(map(int,input().split())))
 
-    graph = Graph(edges, node_number)
-    result = colorGraph(graph, node_number)
-    color_number = len(set(result.values()))
-    if color_number >2:
-        print("F")
-    else:
-        print("T")
+node_number = int(input())
+edge_number = int(input())
+edges = []
+for i in range(edge_number):
+    edges.append(tuple(map(int,input().split())))
+graph = Graph(edges, node_number)
+result = colorGraph(graph, node_number)
+
+
+"""
+color_number = len(set(result.values()))
+if color_number >2:
+    print("F")
+else:
+    print("T")
+"""
 
 """
 2
