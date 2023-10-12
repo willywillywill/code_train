@@ -5,7 +5,6 @@ arr = []
 k = []
 while s:
     ss = s.pop(0)
-
     if ss == "(":
         stack.append(ss)
         arr.append("*")
