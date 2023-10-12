@@ -13,20 +13,19 @@ in1 = list(map(f_s, input().split()[:-1]))
 node_num = len(dit)
 if off or "" not in dit:
     print("not complete")
-    continue
+    exit()
 queue = [""]
 visited_num = 0
 out = []
 while queue:
     node = queue.pop(0)
-    visited_num += 1
+    visited_num+=1
     out.append(str(dit[node]))
     del dit[node]
-    if node+"L" in dit.keys():
+    if node+"L" in dit:
         queue.append(node+"L")
-    if node+"R" in dit.keys():
+    if node+"R" in dit:
         queue.append(node+"R")
-print(visited_num,node_num)
 if visited_num != node_num:
     print("not complete")
 else:
@@ -36,5 +35,6 @@ else:
 (11,LL) (7,LLL) (8,R) (5,) (4,L) (13,RL) (2,LLR) (1,RRR) (4,RR) ()
 (3,L) (4,R) ()
 (11,LL) (7,LLL) (2,LLL) (8,R) (5,) (4,L) (13,RL) (2,LLR) (1,RRR) (4,RR) ()
-(5,) (3,L) (4,R) ()
+(5,) (3,) (4,R) ()
+(1,) (7,LL) (8,LR) (9,R) ()
 """
