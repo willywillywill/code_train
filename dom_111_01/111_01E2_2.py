@@ -1,6 +1,8 @@
-for _ in range(int(input())):
+# me
+for _ in range(1):
     n = int(input())
     m = int(input())
+    mxy = [(0,-1),(-1,0),(1,0),(0,1)]
     lst = []
     visited = [[ 0 for i in range(m) ] for j in range(n)]
     val = [[ 0 for i in range(m) ] for j in range(n)]
@@ -9,24 +11,10 @@ for _ in range(int(input())):
     queue = [(0,0)]
     while queue:
         x,y = queue.pop(0)
-        if visited[x][y] == 0:
-            visited[x][y]=1
-            if x==y==0:
-                val[x][y] = lst[x][y]
-            elif x-1 < 0:
-                val[x][y] = val[x][y-1]+lst[x][y]
-            elif y-1 < 0:
-                val[x][y] = val[x-1][y]+lst[x][y]
-            elif val[x-1][y] >= val[x][y-1]:
-                val[x][y] = val[x][y-1]+lst[x][y]
-            elif val[x-1][y] <= val[x][y-1]:
-                val[x][y] = val[x-1][y]+lst[x][y]
-
-            if x+1 < n:
-                queue.append([x+1,y])    
-            if y+1 < m:
-                queue.append([x,y+1]) 
-    print(val[-1][-1])
+        lst2 = []
+        for mx,my in mxy:
+            if 0 <= mx+x < n and 0 <= my+y < n:
+                pass
 """
 2
 4
