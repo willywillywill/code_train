@@ -1,38 +1,43 @@
-def f_s(s):
-    global max_layer
-    s = s.replace("(","")
-    s = s.replace(")","")
-    s = s.split(",")
-    k=1
-    for i in s[1]:
-        if i=="L":
-            k = k*2
-        else:
-            k = k*2+1
-    max_layer = max(max_layer, len(s[1]))
-    s = int(s[0]),k
-    return s
-
 while 1:
     try:
-        max_layer = 0
-        in1 = list(map(f_s, input().split()[:-1]))
-        lst = [0]*(2**(max_layer+1)-1)
-        for i in in1:
-            lst[i[1]-1] = i[0]
-        queue = [1]
-        visited = []
-        while queue:
-            data = queue.pop(0)
-            if data-1 < len(lst):
-                if lst[data-1]:
-                    visited.append(str(lst[data-1]))
-                    queue.append(2*data)
-                    queue.append(2*data+1)
-        if len(visited) != len(in1):
-            print("not complete")
+        dic={}
+        f=False; Tree=True #f判斷是否中斷讀取, Tree判斷是不是樹
+        while 1:
+            s=input().split()
+            for i in s:
+                if i=='()': #讀到這個才中斷讀取
+                    f=True
+                else:
+                    a,b=i[1:len(i)-1].split(',')
+                    if b=='':
+                        b='root'
+                    if b in dic:
+                        Tree=False #有重複節點
+                    dic[b]=a
+            if f:
+                break
+
+        if 'root' not in dic:
+            Tree=False #沒有根節點
+        if Tree:
+            tree=[]
+            tree.append(dic['root'])
+            del dic['root']
+            q=['L','R']
+            while q:
+                node=q.pop(0)
+                if node in dic:
+                    tree.append(dic[node])
+                    q.append(node+'L')
+                    q.append(node+'R')
+                    del dic[node]
+
+        if len(dic)>0:
+            print('not complete')
+        elif not Tree:
+            print('not complete')
         else:
-            print(" ".join(visited))    
+            print(*tree)
     except:
         break
 
