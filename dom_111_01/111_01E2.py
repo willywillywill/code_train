@@ -1,25 +1,47 @@
-for _ in range(int(input())):
-    x = int(input())
-    y = int(input())
-    graph_val = []
-    graph_cost = [[ 0 for i in range(y)] for j in range(x)]
-    graph_visited = [[ 0 for i in range(y)] for j in range(x)]
-    for i in range(x):
-        data = list(map(int, input().split()))
-        graph_val.append(data)
-    queue = [(0,0)]
-    while queue:
-        qx,qy = queue.pop(0)
-        if graph_visited[qx][qy]==0:
-            graph_visited[qx][qy]=1
-            gx = 9999999 if qx-1<0 else graph_cost[qx-1][qy]
-            gy = 9999999 if qy-1<0 else graph_cost[qx][qy-1]
-            if not (gx==gy==9999999):
-                graph_cost[qx][qy] = min(gx,gy)+graph_val[qx][qy]
-            else:
-                graph_cost[qx][qy] = graph_val[qx][qy]
-            if qx+1 < x:
-                queue.append([qx+1,qy])
-            if qy+1 < y:
-                queue.append([qx,qy+1])
-    print(graph_cost[-1][-1])
+
+
+n = int(input())
+m = int(input())
+g = []
+mxy = [(0,1),(1,0),(0,-1),(-1,0)]
+for i in range(n):
+    g.append(list(map(int,input().split())))
+queue = [(0,0)]
+visited = [[ 0 for j in range(m) ] for i in range(n)]
+val = [[ 0 for j in range(m) ] for i in range(n)]
+
+while queue:
+    qx,qy = queue.pop(0)
+    visited[qx][qy] = 1
+    min_val = 9999
+    for mx,my in mxy:
+        if 0 <= qx+mx < n:
+            if visited[qx+mx][qy] == 0:
+                queue.append((qx+mx,qy))
+            min_val = min(g[qx+mx][qy],min_val)
+        if 0 <= qy+my < m:
+            if visited[qx][qy+my] == 0:
+                queue.append((qx,qy+my))
+            min_val = min(g[qx][qy+my],min_val)
+
+    val[qx][qy] = min_val+g[qx][qy]
+
+print(val)
+
+
+"""
+4
+5
+0 3 1 2 9
+7 3 4 9 9
+1 7 5 5 3
+2 3 4 2 5
+5
+6
+0 9 9 0 0 0
+0 9 0 0 9 0
+0 9 0 9 9 0
+0 0 0 9 9 0
+9 9 9 9 9 0
+"""
+            
