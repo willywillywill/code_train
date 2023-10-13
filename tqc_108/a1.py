@@ -1,8 +1,9 @@
-minx = int(input())
-sec = int(input())
-km = int(input())
+# 1:54
 
-sec = minx*60+sec
-h = sec/60/60
-l = km/1.6/h
+x = int(input())
+y = int(input())
+z = int(input())
+
+h = ((x*60)+y)/60/60
+l = z/1.6/h
 print("Speed = %.1f"%(l))

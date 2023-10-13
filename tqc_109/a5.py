@@ -1,26 +1,27 @@
-in1 = list(input())
+# NO
+# 6:02
+
+s = list(input())
+
 stack = []
+arr = []
 out = []
-k = []
-while in1:
-    i = in1.pop(0)
-    if i=="(":
-        stack.append("(")
-        out+="*"
-        k.append(len(out)-1)
-    elif i==")":
+
+while s:
+    ss = s.pop(0)
+    if ss == "(":
+        stack.append(ss)
+        out.append("*")
+        arr.append(len(out)-1)
+    elif ss == ")":
         if stack:
             stack.pop(-1)
-            k.pop(0)
-            out+="*"
+            out.append("*")
+            arr.pop(-1)
         else:
-            out+="?"
+            out.append("?")
     else:
-        out+="="
-for i in k:
-    out[i]="?"
-print(out)
-
-"""
-A(B+C))/(()D
-"""
+        out.append("=")
+for i in arr:
+    out[i] = "?"
+print("".join(out))

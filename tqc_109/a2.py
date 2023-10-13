@@ -1,11 +1,13 @@
 # 1:27
-in1 = int(input())
+# 1:07
 
-if in1 >= 80:
+n = int(input())
+
+if n >= 80:
     print("A")
-elif in1 >= 79:
+elif n >= 79:
     print("B")
-elif in1 >= 69:
+elif n >= 69:
     print("C")
 else:
     print("F")

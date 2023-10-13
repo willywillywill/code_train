@@ -1,21 +1,25 @@
 # 16:20
+# 8:22
+
 n = int(input())
-def p(n):
-    for i in range(2,n):
-        if n%i==0:
-            return 0
-    else:
-        return 1
-out = [n]
-while 1:
-    lst = []
+
+def p(x):
+    for i in range(2,int(x**0.5)+1):
+        if x%i==0:
+            return False
+    return True
+
+lst = [str(n)]
+while n:
+    l = 99999999
     for i in range(2,n):
         if p(i) and p(n-i):
-            lst.append([i,n-i, abs((i-(n-i)))])
-    lst.sort(key=lambda x:x[2],reverse=True)
-    n = lst[-1][-1]
-    out.append(n)
-    if out[-1]==2 or out[-1]==0:
+            l = min(l,abs(i-(n-i)))
+    n = l
+    lst.append(str(l))
+    if l==0 or l==2:
         break
-for i in out:
+
+for i in lst:
     print(i,end=",")
+print()
