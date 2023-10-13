@@ -7,13 +7,13 @@ CLASS-2: 解題
 
 ## File
 
-[108資訊月.pdf](TQC-pdf\108.pdf)
+[108資訊月.pdf](TQC-pdf/108.pdf)
 
-[109資訊月.pdf](TQC-pdf\109.pdf)
+[109資訊月.pdf](TQC-pdf/109.pdf)
 
-[110資訊月.pdf](TQC-pdf\110.pdf)
+[110資訊月.pdf](TQC-pdf/110.pdf)
 
-[111資訊月.pdf](TQC-pdf\111.pdf)
+[111資訊月.pdf](TQC-pdf/111.pdf)
 
 ## TQC-108
 
