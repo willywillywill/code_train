@@ -20,5 +20,18 @@ while len(queue)>0:
         if g[newr][newc]==0:
             queue.append((newr, newc))
             g[newr][newc]=g[r][c]+1
-
 print(g[-2][-2] if g[-2][-2]!=0 else "No solution!")
+for i in g:
+    print(*i)
+"""
+9
+#########
+#.......#
+#.#####.#
+#.......#
+##.#.####
+#..#.#..#
+#.......#
+#.......#
+#########
+"""
