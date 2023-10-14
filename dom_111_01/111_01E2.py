@@ -12,19 +12,14 @@ val = [[ 0 for j in range(m) ] for i in range(n)]
 
 while queue:
     qx,qy = queue.pop(0)
+    if visited[qx][qy]:
+        continue
     visited[qx][qy] = 1
-    min_val = 9999
-    for mx,my in mxy:
-        if 0 <= qx+mx < n:
-            if visited[qx+mx][qy] == 0:
-                queue.append((qx+mx,qy))
-            min_val = min(g[qx+mx][qy],min_val)
-        if 0 <= qy+my < m:
-            if visited[qx][qy+my] == 0:
-                queue.append((qx,qy+my))
-            min_val = min(g[qx][qy+my],min_val)
+    v = [ [g[qx+i[0]][qy+i[1]],i[0],i[1]] for i in mxy if (0<=i[0]<n and 0<=i[1]<m) ]
+    v.sort(key=lambda x:x[0])
+    print(v)
 
-    val[qx][qy] = min_val+g[qx][qy]
+
 
 print(val)
 
