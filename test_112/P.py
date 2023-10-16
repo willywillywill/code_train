@@ -1,24 +1,23 @@
+# !
+
 class node:
     def __init__(self,val):
         self.val = int(val)
         self.left = None
         self.right = None
-def dfs(i,l):
+def dfs(i,n):
     k=1
     if i.left:
         k=0
-        l.append(i.val)
-        dfs(i.left,l.copy())
+        dfs(i.left,n+1)
     if i.right:
         k=0
-        l.append(i.val)
-        dfs(i.right,l.copy())
+        dfs(i.right,n+1)
     if k:
-        ans.add(tuple(l))
+        ans.append(n)
 
-
-n = 7
-free_nodes = list(map(node,"2 3 6 8 13 15 19".split()))
+n = 6
+free_nodes = list(map(node,"26 25 20 15 10 5".split()))
 while len(free_nodes)!=1:
     val = [ i.val for i in free_nodes ]
     node1 = free_nodes.pop(val.index(min(val)))
@@ -29,9 +28,10 @@ while len(free_nodes)!=1:
     new_node.right = node1
     free_nodes.append(new_node)
 
-ans = set()
-dfs(free_nodes[0], [])
-print(ans)
+ans = []
+dfs(free_nodes[0], 0)
+print(sum(ans))
+
 """
 7
 2 3 6 8 13 15 19
