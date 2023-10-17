@@ -1,11 +1,17 @@
 def f(i):
-    if len(i)==1:
-        return 2
-    k = str(sum([ int(j) for j in i ]))
-    return f(k)
+    if i<10: 
+        return i
+    return f(f(i//10)+i%10)
 
 while 1:
-    n = input()
-    if n=="0":
+    n = int(input())
+    if n==0:
         break
     print(f(n))
+"""
+while 1:
+    n = int(input())
+    if not n:
+        break
+    print(sum([ int(i) for i in str(n) ])%9)    
+"""
