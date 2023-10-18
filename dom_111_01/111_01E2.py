@@ -24,6 +24,8 @@ for _ in range(int(input())):
                     else:
                         lst.append([lx+mx,ly+my,lval+graph[lx+mx][ly+my]])
     print(lval)
+
+
 """
 3
 1
