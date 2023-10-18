@@ -1,27 +1,15 @@
-
-
 n = int(input())
 m = int(input())
-g = []
-mxy = [(0,1),(1,0),(0,-1),(-1,0)]
+lst = []
+mxy = [(0,-1),(-1,0),(1,0),(0,1)]
 for i in range(n):
-    g.append(list(map(int,input().split())))
-queue = [(0,0)]
-visited = [[ 0 for j in range(m) ] for i in range(n)]
-val = [[ 0 for j in range(m) ] for i in range(n)]
+    lst.append(list(map(int,input().split())))
 
-while queue:
-    qx,qy = queue.pop(0)
-    if visited[qx][qy]:
-        continue
-    visited[qx][qy] = 1
-    v = [ [g[qx+i[0]][qy+i[1]],i[0],i[1]] for i in mxy if (0<=i[0]<n and 0<=i[1]<m) ]
-    v.sort(key=lambda x:x[0])
-    print(v)
+vis = [[ 0 for i in range(n) ] for i in range(m) ]
 
+def dfs(x,y,n):
+    for i in range()
 
-
-print(val)
 
 
 """
