@@ -1,4 +1,4 @@
-n,q = list(map(int,input().split()))
+"""n,q = list(map(int,input().split()))
 lst = list(range(n))
 for i in range(q):
     a1,a2 = list(map(int,input().split()))
@@ -10,4 +10,4 @@ for i in range(q):
             if lst[j]<lst[k]:
                 ans+=1
     print(ans)
-
+"""
