@@ -1,13 +1,21 @@
-"""n,q = list(map(int,input().split()))
-lst = list(range(n))
-for i in range(q):
-    a1,a2 = list(map(int,input().split()))
-    lst[a1-1],lst[a2-1] = lst[a2-1],lst[a1-1]
-    ans=0
-  
-    for j in range(n):
-        for k in range(j):
-            if lst[j]<lst[k]:
-                ans+=1
-    print(ans)
-"""
+def update(n):
+    while n<len(bit):
+        bit[n]+=1
+        n += n&-n
+def query(n):
+    s = 0
+    while n > 0:
+        s += bit[n]
+        n -= n & -n
+    return s
+
+
+lst = [1,2,3,4,5,6]
+bit = [0]*len(lst)
+
+s=0
+for i in range(1,len(lst)):
+    s += i-query(i)
+    update(i)
+
+print(s)
