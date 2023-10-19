@@ -4,6 +4,7 @@ def update(n):
     while n<=len(bit):
         bit[n]+=1
         n+=  n&-n
+
 def query(n): # bit[i-n] > bit[i] -> sum bit[a,b...]
     s = 0
     while n>0:
@@ -13,13 +14,18 @@ def query(n): # bit[i-n] > bit[i] -> sum bit[a,b...]
 
 max_n,n = list(map(int,input().split()))
 arr = list(range(1,max_n+1))
+bit = [0]*(10**7)
 
 for _ in range(n):
     a1,a2 = list(map(int,input().split()))
     arr[a1-1],arr[a2-1] = arr[a2-1],arr[a1-1]
     ans = 0
     bit = [0]*(10**7)
+    
     for i in range(max_n):
-        ans += i-query(arr[i])
+        p = i-query(arr[i])
+        ans += p
+        print(p,ans)
         update(arr[i])
     print(ans)
+
