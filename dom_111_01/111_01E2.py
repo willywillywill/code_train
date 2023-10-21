@@ -1,32 +1,34 @@
+import heapq
 
 for _ in range(int(input())):
     n = int(input())
     m = int(input())
     graph = []
-    visited = [[0 for i in range(m)] for j in range(n)]
+
     for i in range(n):
-        graph.append(list(map(int,input().split())))
-    mxy = [(0,-1),(-1,0),(1,0),(0,1)]
-    lst = [(0,0,graph[0][0])]
-    while lst:
-        lst.sort(key=lambda x:x[2])
-        lx,ly,lval = lst.pop(0)
-        if lx==n-1 and ly==m-1:
-            break
-        visited[lx][ly]=1
+        l = list(map(int,input().split()))
+        graph.append(l)
+        
+    visited = [[False for i in range(m)] for i in range(n)]
+    mxy = [(1,0),(0,1),(0,-1),(-1,0)]
+    heap = [(graph[0][0],0,0)]
+    visited[0][0] = 1
+    while heap:
+        hnode = heapq.heappop(heap)
+        val = hnode[0]
+        x = hnode[1]
+        y = hnode[2]
         for mx,my in mxy:
-            if 0<=lx+mx<n and 0<=ly+my<m:
-                if visited[lx+mx][ly+my] == 0:
-                    l = [ [i[0],i[1]] for i in lst ]
-                    if [lx+mx,ly+my] in l:
-                        idx = l.index([lx+mx,ly+my])
-                        lst[idx][2] = min(lst[idx][2],lval+graph[lx+mx][ly+my])
-                    else:
-                        lst.append([lx+mx,ly+my,lval+graph[lx+mx][ly+my]])
-    print(lval)
+            nx = mx+x
+            ny = my+y
+            if nx<0 or ny<0 or nx>n-1 or ny>m-1 or visited[nx][ny]:
+                continue
+            graph[nx][ny] = val+graph[nx][ny]
+            visited[nx][ny] = True
+            heapq.heappush(heap, (graph[nx][ny],nx,ny))
+    print(graph[-1][-1])
 
-
-"""
+""" 
 3
 1
 1
@@ -42,5 +44,5 @@ for _ in range(int(input())):
 0 9 0 9 9 0
 0 0 0 9 9 0
 9 9 9 9 9 0
+
 """
-            
