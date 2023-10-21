@@ -25,6 +25,7 @@ while len(free_nodes)!=1:
     node_val = [ i.val for i in free_nodes ]
     idx_min_node2 = node_val.index(min(node_val))
     min_node2 = free_nodes.pop(idx_min_node2)
+    
     n = node(min_node1.val+min_node2.val)
     n.left = min_node2
     n.right = min_node1
