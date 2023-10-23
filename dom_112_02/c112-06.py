@@ -5,7 +5,7 @@ def f_s(s):
         return True
     elif s==s.upper():
         return True
-    elif s[0] == s[0].upper():
+    elif s[0] == s[0].upper() and s[1:]==s[1:].lower():
         return True
     return False
 

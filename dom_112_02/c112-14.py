@@ -1,0 +1,5 @@
+in1 = list(map(int,input().split(",")))
+in1.pop(in1.index(max(in1)))
+in1.pop(in1.index(max(in1)))
+in1.pop(in1.index(min(in1)))
+in1.pop(in1.index(min(in1)))
