@@ -1,37 +1,39 @@
-n = "OOXOXOXOO"
+n = input()
 """
 OOX
 OXO
 XOO
 """
-lst = [ list(n[i:i+3]) for i in range(0,len(n),3) ]
+ans = []
 
-ans1 = []
-for i in range(len(lst)):
-    A = [ ii[i] for ii in lst ]
-    if ["O","O","O"] == A:
-        ans1.append(1)
-    elif ["X","X","X"] == A:
-        ans1.append(2)
+if n[::3] == "OOO":
+    ans.append(1)
+elif n[::3] == "XXX":
+    ans.append(2)
 
-A = [ lst[i][i] for i in range(len(lst)) ]
-if A == ["O","O","O"]:
-    ans1.append(1)
-elif A == ["X","X","X"]:
-    ans1.append(2)
+if n[1::3] == "OOO":
+    ans.append(1)
+elif n[1::3] == "XXX":
+    ans.append(2)
 
-A = [ lst[i][2-i] for i in range(len(lst)) ]
-if A == ["O","O","O"]:
-    ans1.append(1)
-elif A == ["X","X","X"]:
-    ans1.append(2)
+if n[2::3] == "OOO":
+    ans.append(1)
+elif n[2::3] == "XXX":
+    ans.append(2)
 
-for i in lst:
-    if i == ["O","O","O"]:
-        ans1.append(1)
-    elif i == ["X","X","X"]:
-        ans1.append(2)
-if 1 in ans1 and 2 in ans1:
-    print(3)
+if n[::4] == "OOO":
+    ans.append(1)
+elif n[::4] == "XXX":
+    ans.apppend(2)
+    
+if n[2:-2:2] == "OOO":
+    ans.append(1)
+elif n[2:-2:2] == "XXX":
+    ans.append(2)
+
+if ans.count(1) > ans.count(2):
+    print(1)
+elif ans.count(1) < ans.count(2):
+    print(2)
 else:
-    print(*ans1)
+    print(3)

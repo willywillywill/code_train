@@ -1,5 +1,5 @@
-in1 = list("abcde")
-in2 = list("dbeae")
+in1 = list(input())
+in2 = list(input())
 
 k = 0
 for i in range(len(in1)):
