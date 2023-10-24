@@ -1,18 +1,11 @@
-def func(n,m):
-    arr = [0]*100
-    tail = 0
-    for i in range(1,n+1):
-        arr[tail] = i
-        tail=tail+1
-    head = -1
-    count = 0
-    while tail > head+1:
-        count += 1
-        head += 1
-        if count==m:
-            arr[tail] = arr[head]
-            count = 0
-            tail+=1
-    print(arr)
-    return arr[head]
-print(func(30,4))
+
+n = 9
+lst = [0]*n
+left = []
+right = []
+for i in range(n,0,-1):
+    if i%2==0:
+        left.append(i)
+    else:
+        right.insert(0,i)
+print(left+right)
