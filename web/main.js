@@ -1,8 +1,18 @@
-var run_btn = document.querySelector("run_button");
-run_btn.onclick = function(){
-    console.log("Hello world!");
-    window.alert("test");
+var data = [];
+
+function update(){
+    var out = "";
+
+    for(var i=0 ; i < data.length ; i++){
+        out += "<button class='text_sub'>"+data[i]+"</button>";
+    }
+    document.getElementById("text").innerHTML = out;
+
 };
-function test(){
-    console.log("tets");
-}
+
+
+function insert(){
+    var txt = document.getElementById("insert_txt").value;
+    data.push(txt);
+    update();
+};

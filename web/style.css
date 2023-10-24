@@ -1,11 +1,45 @@
 body{
     background-color: rgb(224, 221, 213);
+
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
 }
-.buttom{
-    margin-left: 40vw;
+.left{
+    background-color: rgba(52, 68, 79, 0.673);
+    height: 80vh;
+    width: 25vw;
+    margin-left: 3vw;
+    margin-top: 3vw;
+    border-radius: 30px;
+    padding: 30px;
 }
-.run_button{
-    background-color: rgb(64, 76, 163);
+.right{
+    height: 80vh;
+    width: 80vh;
+    margin-left: 3vw;
+    margin-top: 3vw;
+}
+.border{
+    height: 80vh;
+    width: 80vh;
+    background-color: cornflowerblue;
+    border-radius: 400vw;
+}
+.insert_txt{
+    height: 5vh;
+    width: 17vw;
+    font-size: 15px;
+}
+.insert_btn{
+    height: 6vh;
+    width: 6vh;
+}
+.text_sub{
+    background-color: rgba(43, 44, 52, 0.348);
+    margin-top: 10px;
     height: 5vh;
     width: 20vw;
+    border-radius: 400vw;
+    font-size: 25px;
 }
