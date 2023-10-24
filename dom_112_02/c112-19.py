@@ -6,11 +6,11 @@ while in2:
     if f=="+":
         in1 = list(str(int("".join(in1))+1))
         a = in1.pop(-1)
-        if a!="0":
-            in1 = [a]+in1
+        in1 = [a]+in1
     elif f=="-":
         in1 = list(str(int("".join(in1))-1))
         a = in1.pop(0)
         in1 = in1+[a]
+    in1 = list(str(int("".join(in1))))
 
 print("".join(in1))    

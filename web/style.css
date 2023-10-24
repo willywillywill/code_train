@@ -1,0 +1,11 @@
+body{
+    background-color: rgb(224, 221, 213);
+}
+.buttom{
+    margin-left: 40vw;
+}
+.run_button{
+    background-color: rgb(64, 76, 163);
+    height: 5vh;
+    width: 20vw;
+}
