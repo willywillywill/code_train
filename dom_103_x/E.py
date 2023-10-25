@@ -1,46 +1,22 @@
+# https://www.megacolorboy.com/posts/poker-hand-analyser-in-python/
+def poker_hand_ranking(hand):
+    values = [card[0] for card in hand]
+    suits = [card[1] for card in hand]
+    if len(set(suits)) == 1 and set(values) == {"10", "J", "Q", "K", "A"}:
+        return "Royal flush"
+    if len(set(suits)) == 1 and all([int(values[i]) - int(values[i - 1]) == 1 for i in range(1, 5)]):
+        return "Straight flush"
+    if len(set(values)) == 2 and sorted([values.count(x) for x in set(values)]) == [2, 3]:
+        return "Full house"
+    if len(set(suits)) == 1:
+        return "Flush"
+    if len(set(values)) == 5 and max([int(card[0]) for card in hand]) - min([int(card[0]) for card in hand]) == 4:
+        return "Straight"
+    if len(set(values)) == 3 and sorted([values.count(x) for x in set(values)]) == [1, 1, 3]:
+        return "Three of a kind"
+    if len(set(values)) == 4 and sorted([values.count(x) for x in set(values)]) == [1, 2, 2]:
+        return "Two pair"
+    if len(set(values)) == 4:
+        return "One pair"
+    return "High card"
 
-
-
-in1 = list(map(int,input().split()))
-in1.sort()
-mod_lst = [ (i-1)%13+1 for i in in1 ]
-div_lst = [ (i-1)//13+1 for i in in1 ]
-ans = [0]
-for j in range(len(in1)): # 同花順
-    times = 1
-    for i in range(1,j):
-        if in1[i-1]+1 != in1[i] or div_lst[i-1] != div_lst[i]:
-            break
-        else:
-            times += 1
-    if times == 5:
-        ans.append(7)
-for j in range(len(in1)): # 順子
-    times = 1
-    for i in range(1,j):
-        if in1[i-1]+1 != in1[i]:
-            break
-        else:
-            times += 1
-    if times == 5:
-        ans.append(4)
-times = { i:mod_lst.count(i) for i in mod_lst } 
-if 4 in times.values(): # 四條
-    ans.append(6)
-elif 2 in times.values() and 3 in times.values(): # 葫蘆
-    ans.append(5)
-elif 3 in times.values(): # 三條
-    ans.append(3)
-elif list(times.values()).count(2)==2: # 兩對
-    ans.append(2)
-elif 2 in times.values(): # 一對
-    ans.append(1)
-    
-print(ans)
-print(max(ans))
-
-
-"""
-3 44 4 6 7 5 
-1 1 1 1 2 2
-"""
