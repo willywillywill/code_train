@@ -2,7 +2,6 @@ def dfs(i):
     visited[i-1] = 1
     if tree[i]:
         for j in tree[i]:
-            print(j)
             if visited[j-1]==0:
                 dfs(j)
 
@@ -13,9 +12,9 @@ for i in range(m):
     tree[a].append(b)
 
 start,end = list(map(int,input().split()))
-
 visited = [0]*n
 dfs(start)
+
 if visited[end-1]:
     print("Yes")
 else:

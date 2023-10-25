@@ -168,3 +168,31 @@ for i in range(q):
     #交換數字並輸出答案
     change(arr,block,a,b)
     print(ans)
+
+
+"""
+from bisect import *
+a,b = map(int,input().split())
+arr = [i for i in range(1,a+1)]
+ans = 0
+for i in range(b):
+    x,y = map(int,input().split())
+    x-=1
+    y-=1
+    if(x==y):
+        print(ans)
+        continue
+    x,y = min(x,y),max(x,y)
+
+    ans-=bisect_left(sorted(arr[x+1:y+1]),arr[x])
+    ans+=bisect_left(sorted(arr[x:y]),arr[y])
+    ans+=len(arr[x+1:y+1])-bisect_right(sorted(arr[x+1:y+1]),arr[x])
+    ans-=len(arr[x:y])-bisect_right(sorted(arr[x:y]),arr[y])
+    
+    if(arr[x]>arr[y]):
+        ans+=1
+    else:
+        ans-=1
+    arr[x],arr[y] = arr[y],arr[x]
+    print(ans)
+"""
