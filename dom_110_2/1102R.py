@@ -14,7 +14,11 @@ print(tree)
 start,end = list(map(int,input().split()))
 visited = [0]*n
 dfs(start)
+<<<<<<< HEAD
 print(visited)
+=======
+
+>>>>>>> 2891908291cc719ddac87077dbe619babe8d4937
 if visited[end-1]:
     print("Yes")
 else:

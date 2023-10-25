@@ -1,29 +1,18 @@
 dit = {}
+
 while 1:
     try:
-        a,b = list(map(str,input().split()))
-        dit[b] = a
+        en,ot = input().split()
+        dit[ot] = en
     except:
         break
 print()
 while 1:
     try:
-        n = input()
-        if n in dit:
-            print(dit[n])
+        ot = input()
+        if ot in dit:
+            print(dit[ot])
         else:
             print("eh")
     except:
         break
-
-"""
-dog ogday
-cat atcay
-pig igpay
-froot ootfray
-loops oopslay
-
-atcay
-ittenkay
-oopslay
-"""
