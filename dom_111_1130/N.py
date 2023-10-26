@@ -9,10 +9,11 @@ for i in range(n):
     for j in range(i):
         if lst[j] < lst[i]:
             length[i] = max(length[i], length[j]+1)
-
+print(length)
 print(max(length))
 
 """
+11
 20 40 32 67 40 20 89 300 404 13 13
 lst = list(map(int, input().split()))
 dp = [ 1 for i in range(len(lst)) ]

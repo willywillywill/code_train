@@ -1,18 +1,11 @@
 for _ in range(int(input())):
-    lst = list(map(str, input().split()))
+    lst = input().split()
     check_lst = [ int("".join(lst[i:i+2]),16) for i in range(0,len(lst),2) ]
-    check_sum = hex(sum(check_lst))[2:][::-1]
-    check_lst = [ check_sum[i:i+4][::-1] for i in range(0,len(check_sum),4) ]
-    s = hex(int(check_lst[0],16)+int(check_lst[1],16))
-    s = bin(int(s,16))[2:]
-    if len(s)%4 != 0:
-        s = "0"*(((len(s)//4)*4+4)-len(s))+s
-    s = int("".join([ str(int(not int(i))) for i in s ]),2)
-    s = hex(s)[2:]
-    if s != 4:
-        s = "0"*(4-len(s))+s
-    print(s)
-
+    check_sum = hex(sum(check_lst))[2:]
+    ans = int(check_sum[:len(check_sum)-4],16)+int(check_sum[len(check_sum)-4:],16)
+    ans = bin(ans)[2:].rjust(16,"0")
+    opt = "".join([ "1" if i=="0" else "0" for i in ans ])
+    print(hex(int(opt,2))[2:].rjust(4,"0"))
 
 """
 5
