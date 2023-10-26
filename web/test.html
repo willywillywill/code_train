@@ -1,46 +1,47 @@
-<!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="main.js"></script>
+	<title>Spin Wheel</title>
 </head>
 <body>
-    <div class="left">    
-        <textarea class="insert_txt" id="insert_txt"></textarea>
-        <button id="changeDividersButton" class="updata_btn">updata</button>
-    </div>
-    <div class="right">
-        <div class="circle" id="circle">
+    
+	<button id="spin">Spin</button>
+    <div class="arrow_con">
+        <span class="arrow"></span>
+        <div class="container">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+            <div class="four"></div>
+            <div class="five"></div>
+            <div class="six"></div>
+            <div class="seven"></div>
+            <div class="eight"></div>
         </div>
     </div>
+	
 
-    <script>
-        const circle = document.getElementById('circle');
-        const changeDividersButton = document.getElementById('changeDividersButton');
-        var data = [];
+<script>
+    let container = document.querySelector(".container");
+    let btn = document.getElementById("spin");
+    let number = Math.ceil(Math.random() * 1000);
+    let lst = [ document.getElementsByClassName("one"),
+                document.getElementsByClassName("two"),
+                document.getElementsByClassName("three"),
+                document.getElementsByClassName("four"),
+                document.getElementsByClassName("five"),
+                document.getElementsByClassName("six"),
+                document.getElementsByClassName("seven"),
+                document.getElementsByClassName("eight"),
+                ];
 
-        function createDividers(num) {
-            circle.innerHTML = '';
-            for (let i = 0; i < num; i++) {
-                const divider = document.createElement('div');
-                divider.className = 'divider';
-                divider.style.transform = `rotate(${(i * 360) / num}deg)`;
-                //const name = document.childElementCount("span");
-                //name.textContent = i+1;
-                //divider.appendChild(name);
-                circle.appendChild(divider);
-            }
-        }
-
-        changeDividersButton.addEventListener('click', () => {
-            var txt = document.getElementById("insert_txt").value;
-            data = txt.split("\n");
-
-            createDividers(data.length);
-        });
-    </script>
+    btn.onclick = function () {
+        container.style.transform = "rotate(" + number + "deg)";
+        number += Math.ceil(Math.random() * 1000);
+}
+</script>
 </body>
 </html>
