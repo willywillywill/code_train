@@ -1,3 +1,5 @@
+# # https://www.twblogs.net/a/5cd0bfcbbd9eee6726c905e4
+
 def f(index):
     if index<=6:
         return index
