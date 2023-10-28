@@ -71,6 +71,10 @@ body{
 	background-color: #f44336;
 	transform: rotate(315deg);
 }
+.container .n{
+	background-color: #f44336;
+	transform: rotate(315deg);
+}
 .arrow_con{
     margin:0;
 	padding:0;
