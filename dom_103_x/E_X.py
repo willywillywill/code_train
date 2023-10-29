@@ -1,56 +1,74 @@
 # ~ b159
-import itertools
 
 for _ in range(int(input())):
-    inp = list(map(int,input().split()))
-    inp = itertools.combinations(inp,5)
-    out = 0
-    for in1 in inp:
-        ans = [0]
-        in1 = sorted(list(in1))
-        mod_lst = [ (ii-1)%13+1 for ii in in1 ]
-        div_lst = [ (ii-1)//13+1 for ii in in1 ]
+    x = list(map(int, input().split()))
+    card = [ 0 for i in range(53) ]
+    card_num = [0 for i in range(15)]
+    card_type = [0,0,0,0]
+    for a in x:
+        card[a] = 1
+        card_num[(a-1)%13+1] += 1
+        if (a-1)%13+1 == 1:
+            card_num[14] += 1
+        card_type[int((a-1)/13)] += 1
+   
+    point = []
+    cnt = 0
+    max_cnt = 0
+    start = -1
+    for a in range(1,15):
+        if card_num[a]>0:
+            cnt += 1
+            if cnt == 1:
+                start = a
+            if max_cnt < cnt:
+                max_cnt = cnt
+            continue
+        cnt = 0
+    if max_cnt >= 5:
+        flag = True
+        type1 = 0
+        for i in range(1,4):
+            if card_type[type1] < card_type[a]:
+                type1 = a
+        start += type1*13
 
-        times = { i:mod_lst.count(i) for i in mod_lst } 
-        if 4 in times.values(): # 四條
-            ans.append(6)
-        elif 2 in times.values() and 3 in times.values(): # 葫蘆
-            ans.append(5)
-        elif 3 in times.values(): # 三條
-            ans.append(3)
-        elif list(times.values()).count(2)==2: # 兩對
-            ans.append(2)
-        elif 2 in times.values(): # 一對
-            ans.append(1)
-        
-        for i in range(1,len(in1)): # 順子
-            times_1 = 1
-            for j in range(i,len(in1)):
-                if in1[j-1]+1 != in1[j]:
-                    break
-                else:
-                    times_1 += 1
-            if times_1==5:
-                ans.append(4)
-        
-            times_2 = 1
-            for j in range(i,len(in1)):
-                if in1[j-1]+1 != in1[j] or div_lst[j-1] != div_lst[j]:
-                    break
-                else:
-                    times_2 += 1
-            if times_2==5:
-                ans.append(7)
+        for a in range(start,start+5):
+            if ((a-1)%13+1)==1:
+                a -= 13
+            if card[a] == 0:
+                flag = False
+                break
+        if flag:
+            point.append(7)
+        else:
+            point.append(4)
+    g1 = 0
+    g2 = 0
+    for a in range(1,14):
+        if g1==0 and card_num[a] >= 2:
+            g1 = card_num[a]
+            continue
+        if g1 !=0 and card_num[a] >= 2:
+            g2 = card_num[a]
+    if g1==4 or g2==4:
+        point.append(6)
+    elif (g1==3 and g2>=2) or (g1==3 and g2>=2):
+        point.append(5)
+    elif g1==3:
+        point.append(3)
+    elif g1==2 and g2>=2 or g2==2 and g1>=3:
+        point.append(2)
+    elif g1==2:
+        point.append(1)
+    else:
+        point.append(0)
 
-        out = max(max(ans),out)
-    print(out)
-    
-
-
+    print(max(point))
 """
 2 
 3 44 4 6 7 5 
-19 12 1 32 45 25 
+19 12 1 32 45 25
 
 2 
 14 16 18 19 20 21 
