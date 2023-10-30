@@ -1,6 +1,8 @@
 
 for _ in range(int(input())):
     dit = {}
+    if _:
+        input()
     for i in range(int(input())):
         for j in map(int,input().split(",")):
             dit[j] = dit.get(j,0)+1
@@ -9,8 +11,7 @@ for _ in range(int(input())):
     lst.sort(key=lambda x:x[1],reverse= True)
     m = lst[0][1]
     lst = [ str(lst[i][0]).rjust(2,"0") for i in range(len(lst)) if lst[i][1]==m ]
-    print(",".join(lst))
-    print()
+    print(", ".join(lst))
 
 """
 2
@@ -22,4 +23,6 @@ for _ in range(int(input())):
 2
 01, 07, 29, 30, 35
 01, 07, 29, 30, 37
+
+01, 07
 """

@@ -1,0 +1,37 @@
+def n(l):
+    l = [ i for i in l ]
+    a = l.pop(0)
+    if not l:
+        return True
+    if a+1 == l[0]:
+        return n(l.copy())
+    else:
+        return False
+    
+for _ in range(int(input())):
+    lst = [[ 0 for i in range(1,14)] for j in range(4)]
+    in1 = list(map(int,input().split()))
+
+    mod_lst = [ (i-1)%13 for i in in1 ]
+    div_lst = [ (i-1)//13 for i in in1]
+    mod_lst.sort()
+    div_lst.sort()
+
+    g = [mod_lst.count(ii) for ii in range(14)]
+
+    if max(div_lst)==min(div_lst) and n(mod_lst):
+        print("同花順")
+    elif max(g)>=4:
+        print("四條")
+    elif 3 in g and 2 in g:
+        print("葫蘆")
+    elif n(mod_lst):
+        print("順子")
+    elif 3 in g:
+        print("三條")
+    elif g.count(2)>=2:
+        print("兩對")
+    elif g.count(2):
+        print("一對")
+    else:
+        print("雜牌")
