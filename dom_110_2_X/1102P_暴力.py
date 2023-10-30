@@ -17,7 +17,6 @@ def f(d:dict,pt):
             k = 0
             f(d.copy(),i)    
 
-
 ans = set()
 f({},0)
 ans = sorted(list(ans), key=lambda x:int(x))

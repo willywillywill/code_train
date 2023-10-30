@@ -1,50 +1,78 @@
-from itertools import combinations #組合
+n=int(input())
+for i in range(n):
+    x=list(map(int, input().split()))
+    card=[0 for i in range(53)]
+    card_num=[0 for i in range(15)]
+    card_type=[0,0,0,0]
+    for a in x:
+        card[a]=1
+        card_num[(a-1)%13+1]+=1
+        if ((a-1)%13+1)==1:
+            card_num[14]+=1
+        card_type[int((a-1)/13)]+=1
 
-for _ in range(int(input())):
-    ans=[]
-    s=list(map(int, input().split()))
-    data=list(combinations(s, 5)) #從6張卡片中取出5張
-    for card_type in data:
-        score=[] #5張牌的分數
-        suit=[] #花色--> 0黑桃 1紅心 2方塊 3梅花
-        point=[] #牌的點數
-        cnt=[] #計算每種點數共有幾張
-        for i in card_type:
-            suit.append((i-1)//13)
-            point.append((i-1)%13 if i%13!=0 else 13) #點數13因為取餘數剛好會等於0, 所以+13
+    point=[]
+    cnt=0
+    max_cnt=0
+    start=-1
+    for a in range(1,15):
+        if card_num[a]>0:
+            cnt+=1
+            if cnt==1:
+                start=a
+            if max_cnt<cnt:
+                max_cnt=cnt
+            continue
+        cnt=0
+    
+    if max_cnt>=5:
+        flag=True
+        type1=0
+        for a in range(1,4):
+            if card_type[type1]<card_type[a]:
+                type1=a
+        start+=type1*13
 
-        for i in set(point): #計算點數的張數
-            cnt.append(point.count(i))
-
-        cnt.sort() #cnt要做排序, 因為[1, 4] != [4, 1]
-
-        min_card=min(card_type) #5張牌中最小的點數
-        point=sorted(point)
-        if point==[1, 2, 3, 4, 5] or point==[1, 10, 11, 12, 13]: #先處理順子的特殊情況
-            if len(set(suit))==1: #看所有牌是否為相同的花色
-                score.append(7)
-            else:
-                score.append(4)
-
-        elif point==[i for i in range(min_card, min_card+5)]: #順子的一般情況
-            if len(set(suit))==1:
-                score.append(7)
-            else:
-                score.append(4)
-        
-        elif cnt==[1, 4]: #四張相同的牌-->四條
-            score.append(6)
-        elif cnt==[2, 3]: #三張相同的牌+兩張相同的牌-->葫蘆
-            score.append(5)
-        elif cnt==[1, 1, 3]: #三張相同的牌-->三條
-            score.append(3)
-        elif cnt==[1, 2, 2]: #兩張相同的牌+兩張相同的牌-->二條
-            score.append(2)
-        elif cnt==[1, 1, 1, 2]: #兩張相同的牌-->一條
-            score.append(1)
+        for a in range(start, start+5):
+            if ((a-1)%13+1)==1:
+                a-=13
+            if card[a]==0:
+                flag=False
+                break
+        if flag:
+            point.append(7)
         else:
-            score.append(0) #雜牌
+            point.append(4)
+    
+    g1=0
+    g2=0
+    for a in range(1,14):
+        if g1==0 and card_num[a]>=2:
+            g1=card_num[a]
+            continue
+        if g1!=0 and card_num[a]>=2:
+            g2=card_num[a]
 
-        ans.append(max(score))
+    if g1==4 or g2==4:
+        point.append(6)
+    elif (g1==3 and g2>=2) or (g1==3 and g2>=2):
+        point.append(5)
+    elif g1==3:
+        point.append(3)
+    elif g1==2 and g2>=2 or g2==2 and g1>=3:
+        point.append(2)
+    elif g1==2:
+        point.append(1)
+    else:
+        point.append(0)
+    print(max(point))
+    
+"""
+2 
+3 44 4 6 7 5 
+19 12 1 32 45 25
 
-    print(max(ans))
+2 
+14 16 18 19 20 21 
+4 17 30 43 9 22
+"""
