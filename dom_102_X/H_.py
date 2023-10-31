@@ -16,13 +16,12 @@ for _ in range(int(input())):
     print(type2)
     print(type1)
 
-    if c(type2):
-        if 1 in type2 and type2 == [1,10,11,12,13]:
+    if (1 in type2) and type2==[1,10,11,12,13]:
+        if min(type1) == max(type2):
             print("同花順")
-        elif 14 in type2 and type2 == [1,10,11,12,13]:
-            print("同花順")
-            
-
+        else:
+            print("順子")
+    elif c(type2):
         if type1[0]==type1[-1]:
             print("同花順")
         else:
@@ -57,4 +56,8 @@ for _ in range(int(input())):
 3 44 4 19 7
 6 12 1 32 45
 26 25 2 38 39
+
+
+1 2 3 4 5
+10 11 12 13 14
 """
