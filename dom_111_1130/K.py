@@ -12,7 +12,6 @@ def f(n):
     else:
         l.append(n)
 
-k = 0
 while 1:
     a = int(input())
     if a==0:
