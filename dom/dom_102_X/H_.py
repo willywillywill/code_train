@@ -13,19 +13,19 @@ for _ in range(int(input())):
     type2.sort()
     ans = ""
 
-    print(type2)
-    print(type1)
+    #print(type2)
+    #print(type1)
 
     if (1 in type2) and type2==[1,10,11,12,13]:
-        if min(type1) == max(type2):
-            print("同花順")
+        if min(type1) == max(type1):
+            print('同花順')
         else:
-            print("順子")
+            print('順子')
     elif c(type2):
         if type1[0]==type1[-1]:
-            print("同花順")
+            print('同花順')
         else:
-            print("順子")
+            print('順子')
     else:
         dit = {}
         for i in set(tuple(type2)):
@@ -34,25 +34,25 @@ for _ in range(int(input())):
             dit[type2.count(i)].append(i)
 
         if 4 in dit:
-            print("四條")
+            print('四條')
         elif (3 in dit and 2 in dit):
-            print("葫蘆")
+            print('葫蘆')
         elif 3 in dit:
             if 2 in dit:
                 if len(dit[2]) == 2:
-                    print("葫蘆")
+                    print('葫蘆')
             else:
-                print("三條")
+                print('三條')
         elif 2 in dit:
             if len(dit[2]) == 2:
-                print("兩對")
+                print('兩對')
             else:
-                print("一對")
+                print('一對')
         else:
-            print("雜牌")
-
+            print('雜牌')
 
 """
+3
 3 44 4 19 7
 6 12 1 32 45
 26 25 2 38 39
