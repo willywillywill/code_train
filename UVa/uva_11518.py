@@ -17,11 +17,8 @@ for _ in range(int(input())):
     print(list(vis.values()).count(1))
 
 
-
-
 """
 100
-
 18 50 9
 1 9
 2 3
