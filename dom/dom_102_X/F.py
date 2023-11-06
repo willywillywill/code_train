@@ -11,8 +11,6 @@ def is_Tree(d):
         return False
     return True 
 
-    
-
 def f_s(s):
     global flag
     s = list(map(int,s.split("-")))
