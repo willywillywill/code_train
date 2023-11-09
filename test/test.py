@@ -1,7 +1,8 @@
-def fun(n):
-    print(n)
-    if n>100:
-        return n-5
-    return fun(fun(n+11))
-
-print(fun(40))
+arr = [
+    [5,1,3],
+    [2,0,2],
+    [3,1,5]
+]
+for i in range(len(arr)):
+    for j in range(len(arr)):
+        arr[i][j] == arr[len(arr)-1-i][len(arr)-1-j]
