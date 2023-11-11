@@ -1,35 +1,32 @@
 
+for _ in range(int(input())):
+    n,m = map(int,input().split())
+    w_lst = list(map(int,input().split()))
+    m_lst = list(map(int,input().split()))
+    m_we = sum(w_lst)
+    dp = [0]*(m_we+1)
+    dp[0] = 1
 
-n,m = map(int,input().split())
-w_lst = list(map(int,input().split()))
-m_lst = list(map(int,input().split()))
-m_we = m_lst[2]
+    for w in w_lst:
+        for i in range(w,m_we+1):
+            dp[i] += dp[i-w]
 
-def find(k,values):
-    memo = [-1]*(k+1)
-    memo[0] = 0
-    for item in range(1,k+1):
-        memo[item] = k+1
-    
-    for item in range(1,k+1):
-        for coin in values:
-            if item-coin < 0:
-                continue
-            memo[item] = min(
-                memo[item],
-                memo[item-coin]+1
-            )
-    return memo
-
-memo = find(m_we, w_lst)
-print(memo)
-print(memo[m_we])
+    s = 0
+    for i in m_lst:
+        if i <= m_we and dp[i]:
+            s += 1
+    print(s)
 
 """
+2
 2 5
 3 5
 1 5 2 7 8
 3 5
 2 5 2
 20 1 2 4 9
+
+2 3
+2 5
+12 20 21
 """
