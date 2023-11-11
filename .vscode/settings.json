@@ -1,3 +1,12 @@
 {
-    "C_Cpp.default.compilerPath": ""
+    "C_Cpp.default.compilerPath": "",
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./dom",
+        "-p",
+        "*test.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true
 }
