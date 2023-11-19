@@ -20,5 +20,18 @@ def build(l=0,r=n,idx=0):
     build(l,m,2*idx+1)
     build(m+1,r,2*idx+2)
 
-modify(1, 2)
-print(lst)
+def query(l,r,L,R,idx):
+    if l<=L and R<=r:
+        return lst[idx]
+    m = (L+R)//2
+    if r <= m:
+        return query(l,r,L,m, 2*idx+1)
+    elif l > m:
+        return query(l,r,m+1,R,2*idx+2)
+    else:
+        return max(
+            query(l,r,L,m, 2*idx+1),
+            query(l,r,m+1,R,2*idx+2)
+                   )
+
+
