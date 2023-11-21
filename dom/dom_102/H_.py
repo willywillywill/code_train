@@ -11,10 +11,6 @@ for _ in range(int(input())):
     type1 = [ (i-1)//13+1 for i in in1 ]  # 花色
     type2 = [ (i-1)%13+1 for i in in1 ]   # 點數
     type2.sort()
-    ans = ""
-
-    #print(type2)
-    #print(type1)
 
     if (1 in type2) and type2==[1,10,11,12,13]:
         if min(type1) == max(type1):
