@@ -1,28 +1,37 @@
 class node:
     def __init__(self, v=None):
         self.v = v
+        if v:
+            self.f = self.v.lower()
         self.t = 1
         self.next = None
     def Add(self, v):
         if not self.v:
             self.v = v
+            self.f = v.lower()
             return
 
-        if self.v == v:
+        if self.f == v.lower():
             self.t += 1
         else:
             if self.next:
                 self.next.Add(v)
             else:
                 self.next = node(v)
-    def Add(self, v, idx):
-        pass
+
+    def Add_idx(self, v, idx, ptr):
+        if idx != 1:
+            self.next.Add_idx(v, idx-1, self.next)
+        else:
+            k = self.next
+            ptr.next = node(v)
+            ptr.next.next = k
     def Long(self):
         if self.next:
             return self.next.Long()+1
         return 1
     def Val(self, l):
-        l.append(self.v)
+        l.append(self.f)
         if self.next:
             self.next.Val(l)
     
@@ -34,7 +43,7 @@ class Main:
             if l == ["#Finish"]:
                 break
             for i in l:
-                self.Add(i)
+                self.Insert(None, i)
         
         self.Link_len = self.Link_list.Long()
 
@@ -52,22 +61,23 @@ class Main:
             elif cmd == "#Exit":
                 break
 
-    def Print(self, root:node):
+    def Print(self, root):
         if root:
-            print(root.v, root.t)
+            print("%s, %s"%(root.v,root.t))
             self.Print(root.next)
     def Insert(self, idx, v):
         if idx:
             if idx <= self.Link_len:
                 val = []
                 self.Link_list.Val(val)
-                if v in val:
-                    self.Add(v)
+                if v.lower() in val:
+                    self.Link_list.Add(v)
+                else:
+                    self.Link_list.Add_idx(v,idx,self.Link_list)
         else:
-            pass
+            self.Link_list.Add(v)
             
         self.Link_len = self.Link_list.Long()
-
 
 Main()
 
