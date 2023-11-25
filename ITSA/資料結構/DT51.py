@@ -27,7 +27,7 @@ class node:
             self.next.Val(l)
     
 class Main:
-    def __init__(self) -> None:
+    def __init__(self):
         self.Link_list = node()
         while 1:
             l = input().split()
