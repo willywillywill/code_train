@@ -1,8 +1,8 @@
 def priority(op):
     return 1 if op in "+-" else 2 if op in "*/" else 0
     
-def toPostfix(infix, isPost = True):
-    toStack, toOutput = ('(', ')') if isPost else (')', '(')
+def toPostfix(infix):
+    toStack, toOutput = ('(', ')')
     
     def procOpt(c, stack, output):
         if stack == "" or priority(stack[-1]) < priority(c):
@@ -28,12 +28,21 @@ def toPostfix(infix, isPost = True):
         else:
             return procExpr(expr[1:], stack, output + expr[0])
     
-    output = procExpr(infix if isPost else infix[::-1])
-    return output if isPost else output[::-1]
+    output = procExpr(infix)
+    return output
 
-def toPrefix(infix):
-    return toPostfix(infix, False)
-    
-infix = "(a+b)*(c+d)"
-print(toPostfix(infix))
-print(toPrefix(infix))
+while 1:
+    try:
+        infix = input().replace(" ","")
+        ans = list(toPostfix(infix))
+        print(" ".join(ans))
+    except:
+        break
+
+
+
+"""
+a + b * c
+a / b - c
+a + b * ( c * ( d + e ) )
+"""

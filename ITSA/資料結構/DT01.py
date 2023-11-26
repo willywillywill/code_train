@@ -14,9 +14,6 @@ while 1:
     except:
         break
 
-
-
-
 for i in range(len(lst)-1,-1,-1):
     if (len(lst[i:i+3])==3) and \
         (lst[i:i+3][0] in ["+","-","*","//"]) and \

@@ -1,15 +1,13 @@
 
+for _ in range(int(input())):
+    input()
+    s = sorted(list(map(int,input().split())),reverse=True)
+    mid = len(s)//2
+    ans = sum(s[:mid])
 
-n = int(input())
-lst = list(map(int,input().split()))
-A = []
-K1 = []
-for j in range(len(lst)):
-    A.append([])
-    for i in range(lst[j]+1):
-        A[-1].append([i,lst[j]-i])
-
-
+    for i in range(mid, len(s)):
+        ans += s[i]//2
+    print(ans)
 
 
 """

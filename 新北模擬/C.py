@@ -1,11 +1,6 @@
-def f(s):
-    return s[0],s[1],s[2]
-
-lst = []
-for _ in range(int(input())):
-    lst.append(input().split("^"))
-lst.sort(key=f)
-
+s = input().replace("^","**")
+s = eval(s)
+print(s)
 """
 4
 2^2^2
