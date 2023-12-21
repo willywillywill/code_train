@@ -22,14 +22,39 @@ for read in stdin:
     print(len(matrix),len(matrix[0]))
     for i in matrix: print(*i,sep=' ')
 """
-3 2 3
-1 1
-3 1
-1 2
-1 0 0
-3 2 2
-3 3
-2 1
-1 2
-0 1
+
+def a(arr):
+    c_arr = [ [ j for j in i ] for i in arr ]
+    for i in range(len(arr)):
+        arr[i] = c_arr[len(arr)-i-1]
+    return arr
+def b(arr):
+    tmp = []
+    for i in range(len(arr[0])):
+        l = []
+        for j in range(len(arr)):
+            l.append(arr[j][i])
+        tmp.append(l)
+    return list(reversed(tmp)).copy()
+
+
+while 1:
+    try:
+        r,c,m = map(int,input().split())
+        arr = []
+        for i in range(r):
+            arr.append(list(map(int,input().split())))
+        for i in list(reversed(list(map(int,input().split())))): # ! reversed
+            if i:
+                arr = a(arr)
+            else:
+                arr = b(arr)
+
+        print(len(arr),len(arr[0]))
+        for i in arr:
+            print(*i)
+    except:
+        break
+
+
 """
