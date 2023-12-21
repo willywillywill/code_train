@@ -1,25 +1,19 @@
 for _ in range(int(input())):
-    ans = False
-    lst = list(map(list,input().split()))
-
-    for i in range(len(lst)):
-        l = lst.copy()
-        for j in range(1,len(l[i])):
-            for m in range(0,9):
-                k = l[i][j]
-                l[i][j] = str(m)
-                if l != sorted(l):
-                    ans = True
-                    break
-                l[i][j] = k
-            if ans:
-                break
-        if ans:
+    s = list(map(int,input().split()))
+    s1 = s
+    for i in range(len(s)):
+        t = list(str(s[i]))
+        for j in range(len(t)):
+            if t[j]!= "9":
+                t[j] = "9"
+        s[i] = int("".join(t))
+        if sorted(s) != s1:
+            print("Yes")
             break
-    if ans:
-        print("Yes")
     else:
         print("No")
+
+    
 
 """
 3
