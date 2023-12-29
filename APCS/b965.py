@@ -1,4 +1,3 @@
-"""
 from sys import stdin
 def flip(matrix):
     return list(reversed(matrix))
@@ -17,7 +16,7 @@ for read in stdin:
     matrix=[]
     for i in range(R): matrix.append([int(x) for x in input().split()])
     operates=[int(x) for x in input().split()]
-    for i in list(reversed(operates)):
+    for i in list(reversed(operates)): # reversed
         if i==0: matrix=rotate(matrix)
         elif i==1: matrix=flip(matrix)
     print(len(matrix),len(matrix[0]))
@@ -58,10 +57,4 @@ while 1:
         break
 
 
-"""
-3 2 3
-1 2
-3 4
-5 6
-0 0 1
 """
