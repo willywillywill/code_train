@@ -1,4 +1,4 @@
-"""
+""" A1 TLE
 for _ in range(int(input())):
 
     str1 = input().replace(" ","")
@@ -14,6 +14,22 @@ for _ in range(int(input())):
     print( 'Valid' if (lst1+lst2)%10==0 else 'Invalid')
 """
 
+""" A2 TLE
+def fun(data):
+    i,num = data
+    return sum([int(j) for j in str(int(num)*2)]) if i%2 else int(num)
+
+
+for _ in range(int(input())):
+    in1 = input().replace(" ", "")
+
+    in1 = in1[::-1]
+
+    k = list(map(fun, list(enumerate(in1))))
+    print( "Valid" if str(sum(k))[-1]=="0" else "Invalid" )
+"""
+
+# A3 OK
 from sys import stdin,stdout
 m = dict(zip("0123456789", map(int,"0246813579")))
 li = {
